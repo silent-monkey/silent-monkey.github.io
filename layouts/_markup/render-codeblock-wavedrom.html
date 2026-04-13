@@ -1,0 +1,9 @@
+<script type="WaveDrom">
+  {{ .Inner | safeHTML}}
+</script>
+{{- if not (.Page.Store.Get "wavedrom") -}}
+  {{- /* Include wavedrom only first time */ -}}
+  <script defer src="{{ "wavedrom/skins/default.js" | relURL }}"></script>
+  <script defer src="{{ "wavedrom/wavedrom.min.js" | relURL }}" onload="WaveDrom.ProcessAll();"></script>
+  {{- .Page.Store.Set "wavedrom" true -}}
+{{- end -}}
